@@ -1,3 +1,6 @@
+
+//<-- state object with all the questions information -->
+
 var state = {
     question1:{
         text: '<:48:x<:65:=<:6C:$=$=$$~<:03:+$~<:ffffffffffffffbd:+$<:ffffffffffffffb1:+$<:57:~$~<:18:x+$~<:03:+$~<:06:x-$x<:0e:x-$=x<:43:x-$',
@@ -44,6 +47,8 @@ var state = {
     }
  };
 
+//<-- Functions to modify the state object -->
+
 var presentQuestion = function(state,questionIndex){
     var arrayQuestions = []
     arrayQuestions.push(state.question1, state.question2, state.question3, state.question4)
@@ -58,6 +63,8 @@ var quizPoints = function(state,choice){
     state["score"] = score
 }
 
+//<-- Function to calculte total score -->
+
 var scorePoints = function(){
     if(state.score === 1){
         currentPoints = 1
@@ -68,6 +75,8 @@ var scorePoints = function(){
     totalPoints = totalPoints + currentPoints
     currentPoints = 0  
 }
+
+//<-- Functions to render content in DOM -->
 
 var renderQuestions = function(element){
     var questionHTML = "<p>" + window.currentQuestion.text + "</p>"
@@ -86,9 +95,13 @@ var renderScore = function(state, element){
     element.html(scoreHTML)
 }
 
+// <--Global variables to keep track of questions and calculate points -->
+
 var counter = 0
 var totalPoints = 0
 var currentPoints = 0
+
+// <-- jQuery to make changes in DOM -->
 
 $(".answers").on("click","button",function(event){
     event.preventDefault()
