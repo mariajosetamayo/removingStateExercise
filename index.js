@@ -60,6 +60,18 @@ var quizPoints = function(state,choice){
     console.log("score",state.score)
 }
 
+var scorePoints = function(){
+    if(state.score === 1){
+        currentPoints = 1
+        console.log("these are points asserted", currentPoints)
+    }
+    else{
+        currentPoints = 0
+    }
+    totalPoints = totalPoints + currentPoints
+    currentPoints = 0  
+}
+
 var renderQuestions = function(element){
     var questionHTML = "<p>" + window.currentQuestion.text + "</p>"
     element.html(questionHTML)
@@ -79,6 +91,7 @@ var renderScore = function(state, element){
 
 var counter = 0
 var totalPoints = 0
+var currentPoints = 0
 
 $(".answers").on("click","button",function(event){
     event.preventDefault()
@@ -90,23 +103,16 @@ $(".answers").on("click","button",function(event){
     console.log("counter state", counter)   
     if((questionIndex+1)<=4){
         presentQuestion(state,questionIndex)
-        quizPoints(state,(choice+1))
+        quizPoints(state,choice+1)
         renderQuestions($('.question'))
         renderOptions($(".answers"))
-        if(state.score === 1){
-            currentPoints = 1
-            console.log("these are points asserted", currentPoints)
-        }
-        else if(state.score===0){
-            currentPoints = 0
-        }
+        scorePoints()
         counter++
-
-        totalPoints = totalPoints + currentPoints
-        var currentPoints = 0
         console.log("totalPoints", totalPoints)
     }
-    else if((questionIndex+1)===5){
+    else {
+        console.log("LAST QUESTION")
+        scorePoints()
         $(".questions-page").hide()
         $(".results-page").show()
         renderScore(state, $(".results-page"))
@@ -124,7 +130,6 @@ $(".results-page").on("click","button",function(){
     totalPoints = 0
 })
 
-
 $(document).ready(function(){
     presentQuestion(state,counter)
     renderQuestions($('.question'))
@@ -138,71 +143,4 @@ $(document).ready(function(){
 
 
 
-
-// var questionsPageElement = $('.questions-page');
-// var questionCurrentElement = $('.question-current');
-// var questionsTotalElement = $('.questions-total');
-// var questionElement = $('.question');
-// var answersElement = $('.answers');
-
-// var resultsPageElement = $('.results-page');
-// var scoreElement = $('.score');
-// var restartButtonElement = $('.restart-button');
-
-// var showResults = function() {
-//     questionsPageElement.hide();
-//     resultsPageElement.show();
-// };
-
-// var showQuestions = function() {
-//     resultsPageElement.hide();
-//     questionsPageElement.show();
-// };
-
-// var resetScore = function() {
-//     scoreElement.text(0);
-// };
-
-// var increaseScore = function() {
-//     var score = parseInt(scoreElement.text(), 10);
-//     scoreElement.text(score + 1);
-// };
-
-// var setQuestion = function(questionIndex) {
-//     var question = QUESTIONS[questionIndex];
-//     questionCurrentElement.text(questionIndex);
-//     questionElement.text(question.text);
-//     answersElement.empty();
-//     for (var i=0; i<question.answers.length; i++) {
-//         var answer = question.answers[i];
-//         answersElement.append('<li><button type="button">' + answer + '</button></li>');
-//     }
-// };
-
-// answersElement.on('click', 'button', function() {
-//     var choice = $(this).parent().index();
-//     var questionIndex = parseInt(questionCurrentElement.text(), 10);
-//     var question = QUESTIONS[questionIndex];
-//     if (question.correct === choice) {
-//         increaseScore();
-//     }
-
-//     if (questionIndex + 1 < QUESTIONS.length) {
-//         setQuestion(questionIndex + 1);
-//     }
-//     else {
-//         showResults();
-//     }
-// });
-
-// restartButtonElement.click(function() {
-//     setQuestion(0);
-//     resetScore();
-//     showQuestions();
-// });
-
-// $(document).ready(function() {
-//     questionsTotalElement.text(QUESTIONS.length);
-//     setQuestion(0);
-// });
 
