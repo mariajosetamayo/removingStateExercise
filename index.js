@@ -48,7 +48,6 @@ var presentQuestion = function(state,questionIndex){
     var arrayQuestions = []
     arrayQuestions.push(state.question1, state.question2, state.question3, state.question4)
     window.currentQuestion = arrayQuestions[questionIndex]
-    console.log(window.currentQuestion)
 }
 
 var quizPoints = function(state,choice){
@@ -57,13 +56,11 @@ var quizPoints = function(state,choice){
         score++
     }
     state["score"] = score
-    console.log("score",state.score)
 }
 
 var scorePoints = function(){
     if(state.score === 1){
         currentPoints = 1
-        console.log("these are points asserted", currentPoints)
     }
     else{
         currentPoints = 0
@@ -96,11 +93,8 @@ var currentPoints = 0
 $(".answers").on("click","button",function(event){
     event.preventDefault()
     var choice = $(this).parent().index();
-    console.log("users choice",choice)
     var questionIndex = counter + 1
-    $(".question-current").text(questionIndex + 1)
-    console.log("question index number",questionIndex)
-    console.log("counter state", counter)   
+    $(".question-current").text(questionIndex + 1)  
     if((questionIndex+1)<=4){
         presentQuestion(state,questionIndex)
         quizPoints(state,choice+1)
@@ -108,10 +102,8 @@ $(".answers").on("click","button",function(event){
         renderOptions($(".answers"))
         scorePoints()
         counter++
-        console.log("totalPoints", totalPoints)
     }
     else {
-        console.log("LAST QUESTION")
         scorePoints()
         $(".questions-page").hide()
         $(".results-page").show()
