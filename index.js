@@ -5,6 +5,7 @@ var state = {
     score:0,
 }
 
+// array with questions
 var QUESTIONS = [
     {
         text: '<:48:x<:65:=<:6C:$=$=$$~<:03:+$~<:ffffffffffffffbd:+$<:ffffffffffffffb1:+$<:57:~$~<:18:x+$~<:03:+$~<:06:x-$x<:0e:x-$=x<:43:x-$',
@@ -133,7 +134,7 @@ answersElement.on("click","button",function(){
     hasNextQuestion(state)? renderQuestions(state) : showResult()
 })
 
-// event handler to start a new game after clickin restart button
+// event handler to start a new game after clicking restart button
 restartButtonElement.click(function(){
     scoreElement.text(0)
     newGame(state)
