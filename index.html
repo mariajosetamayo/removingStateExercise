@@ -1,20 +1,25 @@
 <!doctype HTML>
-<meta charset="utf-8">
-
-<title>Hello World Quiz</title>
-
-<div class="questions-page">
-    <div>
-        <span class="question-current">1</span>/<span class="questions-total">4</span>
-    </div>
-    <div class="question">
-
-    </div>
-    <ul class="answers">
-    </ul>
-</div>
-
-<div class="results-page" style="display: none;"></div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="index.js"></script>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World Quiz</title>
+    </head>
+    <body>
+        <div class="questions-page">
+            <div>
+                <span class="question-current">0</span>/<span class="questions-total">0</span>
+            </div>
+            <div class="question"></div>
+            <ul class="answers"></ul>
+        </div>
+        <div class="results-page" style="display: none;">
+            <div>
+                <p>You scored</p><span class="score">0</span>/<span class="questions-total">0</span>
+            </div>
+            <button type="button" class="restart-button">Restart</button>
+        </div>
+        <div class="results-page" style="display: none;"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
