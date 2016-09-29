@@ -47,17 +47,17 @@ var QUESTIONS = [
         ],
         correct: 3
     }
-];
+]
 
 // variables to obtain elements from html
-var questionsPageElement = $('.questions-page');
-var questionCurrentElement = $('.question-current');
-var questionsTotalElement = $('.questions-total');
-var questionElement = $('.question');
-var answersElement = $('.answers');
-var resultsPageElement = $('.results-page');
-var scoreElement = $('.score');
-var restartButtonElement = $('.restart-button');
+var questionsPageElement = $('.questions-page')
+var questionCurrentElement = $('.question-current')
+var questionsTotalElement = $('.questions-total')
+var questionElement = $('.question')
+var answersElement = $('.answers')
+var resultsPageElement = $('.results-page')
+var scoreElement = $('.score')
+var restartButtonElement = $('.restart-button')
 
 
 ///// Game Logic /////
@@ -100,7 +100,7 @@ var newGame = function(state){
 $(document).ready(function(){
     renderQuestions(state)
     questionsTotalElement.text(QUESTIONS.length)
-});
+})
 
 // function to display the questions
 var renderQuestions = function(state){
@@ -129,7 +129,7 @@ var showQuestions = function(){
 
 // event handler to obtain user choice, evaluate it, and when the quiz ends show the results
 answersElement.on("click","button",function(){
-    var choice = $(this).parent().index();
+    var choice = $(this).parent().index()
     userAnswer(choice)
     hasNextQuestion(state)? renderQuestions(state) : showResult()
 })
